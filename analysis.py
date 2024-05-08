@@ -12,9 +12,14 @@
 
 # Importing nessesary libraries:
 
-# importing pandas to allow us to investigate CSV files and other data exploration
+## importing pandas to allow us to investigate CSV files and other data exploration
 import pandas as pd
 
+## importing sys module
+## it gives access to various system-related functionalities, for example to interact with files
+## https://www.geeksforgeeks.org/python-sys-module/
+
+import sys
 
 
 # Downloading the Iris online dataset (raw file)
@@ -27,6 +32,53 @@ print(df)
 print (df.info())
 
 # Output a summary of each variable to a single text file
+# idea for sys.stdout: https://stackoverflow.com/questions/3263672/the-difference-between-sys-stdout-write-and-print
+
+FILENAME = 'summary_analysis.txt'
+sys.stdout = open (FILENAME, 'w+t')
+print('\n')
+print('-------------------------------------')
+print(' ### SUMMARY OF THE IRIS DATASET ###')
+print('-------------------------------------')
+print ('\n')
+print ('Overview of the Iris dataset:')
+print ('==============================================================================')
+print(df)
+print ('\n\n')
+print('Iris dataset basic statistical values:')
+print('=============================================================')
+print(df.describe())
+print ('\n\n')
+print('Number of samples of each type and variable type:')
+print('=============================================================')
+print(df.info())
+print ('\n\n')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
 ## Render a DataFrame to a console-friendly tabular output:
 ## https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_string.html
 dscr = df.describe().to_string()
@@ -56,7 +108,7 @@ with open(FILENAME, 'w+t') as f:
     df.info(buf=f) # https://stackoverflow.com/questions/35436331/how-to-save-output-from-dataframe-info-to-file-a-excel-or-text-file
     f.write('=============================================================')
     f.write('\n\n')
-
+'''
 
 
 
