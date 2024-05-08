@@ -30,7 +30,7 @@ print (df.info())
 ## Render a DataFrame to a console-friendly tabular output:
 ## https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_string.html
 dscr = df.describe().to_string()
-
+sum = df.to_string()
 ##https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html
 
 
@@ -40,6 +40,7 @@ FILENAME = 'summary_analysis.txt'
 with open(FILENAME, 'w+t') as f:
     f.write('\n')
     f.write('### SUMMARY OF THE IRIS DATASET ###\n')
+    f.write(sum)
     f.write('\n')
     f.write('Iris dataset basic statistical values:\n')
     f.write('=============================================================')
