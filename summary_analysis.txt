@@ -56,3 +56,54 @@ None
 
 
 
+Summary of number of each species:
+=============================================================
+species
+setosa        50
+versicolor    50
+virginica     50
+Name: count, dtype: int64
+
+
+
+Summary statistic of each numerical variable:
+=============================================================
+
+
+What is included in that summary:
+-------------------------------------------------------------
+Mean: The average value in (cm)
+Standard Deviation: Indicates how values are spread out from the mean.
+Minimum: The smallest value in the Iris dataset (cm).
+Maximum: The largest value in the Iris dataset (cm).
+-------------------------------------------------------------
+
+
+
+Summary statistics for sepal_length:
+Mean:  5.843333333333334
+Standard Deviation:  0.8280661279778629
+Minimum:  4.3
+Maximum:  7.9
+
+Summary statistics for sepal_width:
+Mean:  3.0573333333333337
+Standard Deviation:  0.435866284936698
+Minimum:  2.0
+Maximum:  4.4
+
+Summary statistics for petal_length:
+Mean:  3.7580000000000005
+Standard Deviation:  1.7652982332594667
+Minimum:  1.0
+Maximum:  6.9
+
+Summary statistics for petal_width:
+Mean:  1.1993333333333336
+Standard Deviation:  0.7622376689603465
+Minimum:  0.1
+Maximum:  2.5
+None
+
+
+

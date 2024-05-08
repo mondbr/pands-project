@@ -53,21 +53,41 @@ print('Number of samples of each type and variable type:')
 print('=============================================================')
 print(df.info())
 print ('\n\n')
+print('Summary of number of each species:')
+print('=============================================================')
+print(df['species'].value_counts())
+print ('\n\n')
+# Print summary statistics for each numerical variable
+# Use function 
+def summary_stats(data, var_names):
+    for var in var_names:
+        summary = data[var].describe()
+        mean = summary['mean']
+        std_dev = summary['std']
+        minimum = summary['min']
+        maximum = summary['max']
+        print(f'\nSummary statistics for {var}:')
+        print('Mean: ', mean)
+        print('Standard Deviation: ', std_dev)
+        print('Minimum: ', minimum)
+        print('Maximum: ', maximum)
 
+# List of variable names
+variables = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+print('Summary statistic of each numerical variable:')
+print('=============================================================')
+print ('\n')
+print('What is included in that summary:')
+print('-------------------------------------------------------------')
+print('Mean: The average value in (cm)')
+print('Standard Deviation: Indicates how values are spread out from the mean.')
+print('Minimum: The smallest value in the Iris dataset (cm).')
+print('Maximum: The largest value in the Iris dataset (cm).' )
+print('-------------------------------------------------------------')
+print ('\n')
+print(summary_stats(df,variables))
+print ('\n\n')
 
 
 
