@@ -58,7 +58,7 @@ print('=============================================================')
 print(df['species'].value_counts())
 print ('\n\n')
 # Print summary statistics for each numerical variable
-# Use function 
+# Using function as it will be apllying to 4 same variables (to simplify the code)
 def summary_stats(data, var_names):
     for var in var_names:
         summary = data[var].describe()
@@ -86,7 +86,7 @@ print('Minimum: The smallest value in the Iris dataset (cm).')
 print('Maximum: The largest value in the Iris dataset (cm).' )
 print('-------------------------------------------------------------')
 print ('\n')
-print(summary_stats(df,variables))
+print(f'{summary_stats(df,variables)}')
 print ('\n\n')
 
 
