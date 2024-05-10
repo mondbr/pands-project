@@ -30,7 +30,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# Importing seaborn library for statistical plotting library for Python.
+# https://github.com/mwaskom/seaborn
 
+import seaborn as sns
 
 
 ### Download the data set ###
@@ -79,13 +82,13 @@ print('=============================================================')
 print(df.describe())
 print ('\n\n')
 
-# writing to the text file  a info() module for info about number of individuals and variable type
+# writing to the text file an info() module for info about individual records and variable type
 print('Number of samples of each type and variable type:')
 print('=============================================================')
 print(df.info())
 print ('\n\n')
 
-# writing to the text file  a info() module for info about number of individuals and variable type
+# writing to the text file  a value counts() module for info about number of each spiecies
 print('Summary of number of each species:')
 print('=============================================================')
 print(df['species'].value_counts())
@@ -141,14 +144,49 @@ average_val = df.groupby('species').mean()
 print('Average value for each variable for each species (cm):')
 print('=============================================================')
 print(average_val)
+print ('\n\n')
 
 
 
+# Check for NaN values (values with no data)
+# In order to do some statistical calculations, I have to remove NaN (no data) values from our dataset. 
+# I learnt about this from similar analysis done by *Sunil Kumar Dash* on [analyticsvidhya.com]
+# (https://www.analyticsvidhya.com/blog/2022/04/data-exploration-and-visualisation-using-palmer-penguins-dataset/).
+#  More information of how to delete the NaN data I found on
+# [www.medium.com](https://medium.com/@TheDataScience-ProF/nan-removal-with-python-3d97b954d16d#:~:text=Removing%20NaN%20values%20from%20a%20list%20in%20Python%20can%20be,remove%20them%20from%20a%20list.)
+# and [*ashbabkhan12*](https://ashbabkhan12.medium.com/how-to-remove-nan-values-in-data-using-python-8f959e3d5fbc) blog. 
 
+print('Number of NaN (no data) values' )
+print('=============================================================')
+# Check for NaN values
+nan_values = df.isna()
+
+# Count the number of NaN values in each column
+nan_count_per_column = nan_values.sum()
+
+# Count the total number of NaN values in the entire DataFrame
+total_nan_count = nan_count_per_column.sum()
+
+# Print the results
+print('NaN values per column:')
+print(nan_count_per_column)
+print(f'\nTotal NaN values:{(total_nan_count)}')
 
 
 
 ### Saving a histogram of each variable to png files in this repository ###
+
+
+
+# Let's get the data into numpy arrays. 
+s_len = df['sepal_length'].to_numpy()
+s_wth = df['sepal_width'].to_numpy()
+p_len = df['petal_length'].to_numpy()
+p_wth = df['petal_width'].to_numpy()
+specs = df['species'].to_numpy()
+
+
+
 
 ### Creating a barchart for a start
 
@@ -161,9 +199,9 @@ plt.figure(figsize=(8, 5))  # Adjusting the figure size
 plt.bar(sp_counts.index, sp_counts.values)
 
 # Adding titles:
-plt.title('Figure 1. Number of Iris flowers of each species')
-plt.xlabel('Species')
-plt.ylabel('Count')
+plt.title('Figure 1. Number of Iris flowers of each species', size = 10)
+plt.xlabel('Species', size = 10)
+plt.ylabel('Count', size = 10)
 
 
 
@@ -189,8 +227,6 @@ plt.show()
 
 
 
-
-
 ### plotting histogram for each variable
 # colors https://matplotlib.org/stable/gallery/color/named_colors.html
 
@@ -207,9 +243,9 @@ for species, data in grouped_df:
     plt.hist(data['sepal_length'], bins=5, alpha=0.5, label=species)
 
 # Adding labels and title
-plt.xlabel('Sepal Length (cm)')
-plt.ylabel('Frequency')
-plt.title('Figure 2. Histogram of Sepal Length for Each Species')
+plt.xlabel('Sepal Length (cm)', size = 10)
+plt.ylabel('Frequency', size = 10)
+plt.title('Figure 2. Histogram of Sepal Length for Each Species', size = 10)
 plt.legend()
 
 # Saving the plot in the repository
@@ -220,6 +256,16 @@ plt.show()
 
 
 
+# Histograms for each species
+# https://www.kaggle.com/code/alexisbcook/distributions/tutorial
+sns.histplot(data=df, x='sepal_width', hue='species')
+
+# Add title
+plt.title("Histogram of sepal_width, by Species")
+
+plt.show()
+'''
+
 # Creating a separate histogram for each species for 2nd variable sepal_width
 plt.figure(figsize=(10, 6))
 for species, data in grouped_df:
@@ -227,9 +273,9 @@ for species, data in grouped_df:
 
 
 # Adding labels and title
-plt.xlabel('Sepal Width (cm)')
-plt.ylabel('Frequency')
-plt.title('Figure 3. Histogram of Sepal Width for Each Species')
+plt.xlabel('Sepal Width (cm)', size = 10)
+plt.ylabel('Frequency', size = 10)
+plt.title('Figure 3. Histogram of Sepal Width for Each Species', size = 10)
 plt.legend()
 
 # Saving the plot in the repository
@@ -238,7 +284,7 @@ plt.savefig('3_sepal_width_histogram_species.png')
 # checking how the plot look
 plt.show()
 
-
+'''
 
 
 # Creating a separate histogram for each species for 3rd variable Petal Lenght
@@ -247,9 +293,9 @@ for species, data in grouped_df:
     plt.hist(data['petal_length'], bins=5, alpha=0.5, label=species)
 
 # Add labels and title
-plt.xlabel('Petal Length (cm)')
-plt.ylabel('Frequency')
-plt.title('Figure 4. Histogram of Petal Length for Each Species')
+plt.xlabel('Petal Length (cm)', size = 10)
+plt.ylabel('Frequency', size = 10)
+plt.title('Figure 4. Histogram of Petal Length for Each Species', size = 10)
 plt.legend()
 
 # Save the plot in the repository
@@ -267,12 +313,12 @@ for species, data in grouped_df:
     plt.hist(data['petal_width'], bins=5, alpha=0.5, label=species)
 
 # Define a color palette for each species
-colors = {'setosa': 'skyblue', 'versicolor': 'salmon', 'virginica': 'cyan'}
+
 
 # Adding labels and title
-plt.xlabel('Petal Width (cm)')
-plt.ylabel('Frequency')
-plt.title('Figure 5. Histogram of Petal Width for Each Species')
+plt.xlabel('Petal Width (cm)', size = 10)
+plt.ylabel('Frequency', size = 10)
+plt.title('Figure 5. Histogram of Petal Width for Each Species', size = 10)
 plt.legend()
 
 # Saving the plot in the repository
@@ -283,12 +329,101 @@ plt.show()
 
 
 
+# plotting a scatterplot for sepal and width:
+
+#setting x-axis variable
+x_var_s = 'sepal_length'
+
+#setting y-axis variable 
+y_var_s = 'sepal_width' 
+
+# Create a scatter plot with species showed in different color 
+plt.figure(figsize = (8,6))
+
+sns.scatterplot(x = x_var_s, y = y_var_s, data = df, marker = 'o', hue = 'species', palette = ['blueviolet','navy','fuchsia'])
+
+# Adding labels and titles
+plt.xlabel('Sepal length (cm)', size = 10)
+plt.ylabel('Sepal width (cm)', size = 10)
+plt.title('Figure 6. Sepal length and Sepal width comparison', size = 10)
+plt.legend()
+plt.savefig('6_sepal-length-width_scatt.png')
+plt.show()
+
+
+
+
+
+
+
+
+# plotting a scatterplot for petal length and width:
+
+#setting x-axis variable
+x_var_p = 'petal_length'
+
+#setting y-axis variable 
+y_var_p = 'petal_width' 
+
+# Create a scatter plot with species showed in different color 
+plt.figure(figsize = (8,6))
+
+sns.scatterplot(x = x_var_p, y = y_var_p, data = df, marker = 'o', hue = 'species', palette = ['violet','mediumorchid','blue'], edgecolor = 'black')
+
+# Adding labels and titles
+plt.xlabel('Petal length (cm)', size = 10)
+plt.ylabel('Petal width (cm)', size = 10)
+plt.title('Figure 7. Petal length and Petal width comparison', size = 10)
+plt.legend()
+plt.savefig('7_petal-length-width_scatt.png')
+plt.show()
+
+
+
+# To ignore warnings regarding a change in the figure layout in seaborn:
+# https://docs.python.org/3/library/warnings.html
+
+import warnings
+warnings.filterwarnings('ignore')
+
+
+
+# pairwise scatter plot: 
+numeric_vars = ['sepal_length','sepal_width', 'petal_length', 'petal_width']  # adding numeric variable names
+
+
+# Create a scatter plot matrix with color encoding for categorical variables
+# https://stackoverflow.com/questions/43567309/how-to-add-edgecolor-for-the-hist-plot-sons
+sns.pairplot(df, vars=numeric_vars, hue='species', palette = ['fuchsia','mediumorchid','blue'], plot_kws={'edgecolor':'white'}, height=2)
+plt.suptitle('Figure 8. Pairwise Scatter Plot Matrix (cm)')  # Add title for thepairplot
+plt.savefig('8_pairwise_scatter_plot.png')
+
+# Adjust layout to prevent overlapping labels  
+#https://stackoverflow.com/questions/9603230/how-to-use-matplotlib-tight-layout-with-figure
+plt.tight_layout() 
+
+#Adjust layout to prevent overlapping labels
+plt.subplots_adjust(top=0.9, bottom=0.1, left=0.1, right=0.9, hspace=0.4, wspace=0.4)
+
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # bins=np.arange(0, 3, 0.15)
 
-
-
+# sepal_length  sepal_width  petal_length  petal_width    species
 
 
 '''
@@ -351,7 +486,6 @@ plt.savefig('petal_width_histogram.png')
 plt.show()
 
 
-'''
 
 
 
@@ -364,8 +498,6 @@ plt.show()
 
 
 
-
-'''
 ## Render a DataFrame to a console-friendly tabular output:
 ## https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_string.html
 dscr = df.describe().to_string()
@@ -396,6 +528,3 @@ with open(FILENAME, 'w+t') as f:
     f.write('=============================================================')
     f.write('\n\n')
 '''
-
-
-

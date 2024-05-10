@@ -117,3 +117,17 @@ species
 setosa             5.006        3.428         1.462        0.246
 versicolor         5.936        2.770         4.260        1.326
 virginica          6.588        2.974         5.552        2.026
+
+
+
+Number of NaN (no data) values
+=============================================================
+NaN values per column:
+sepal_length    0
+sepal_width     0
+petal_length    0
+petal_width     0
+species         0
+dtype: int64
+
+Total NaN values:0
