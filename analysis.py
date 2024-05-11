@@ -49,7 +49,6 @@ print(df)
 print (df.info())
 
 
-
 ### Output a summary of each variable to a single text file ###
 
 
@@ -178,15 +177,6 @@ print(f'\nTotal NaN values:{(total_nan_count)}')
 
 
 
-# Let's get the data into numpy arrays. 
-s_len = df['sepal_length'].to_numpy()
-s_wth = df['sepal_width'].to_numpy()
-p_len = df['petal_length'].to_numpy()
-p_wth = df['petal_width'].to_numpy()
-specs = df['species'].to_numpy()
-
-
-
 
 ### Creating a barchart for a start
 
@@ -234,9 +224,28 @@ plt.show()
 #https://python.plainenglish.io/preprocessing-and-manipulating-data-for-data-science-using-pandas-721eb2b5a9d7
 
 
-# Grouping the data by species
-grouped_df = df.groupby('species')
+# Histograms for each species
+# https://www.kaggle.com/code/alexisbcook/distributions/tutorial
+# setting colors 
+# https://stackoverflow.com/questions/46087192/how-to-set-all-edgecolor-to-none-in-seaborn-matplotlib
+# https://seaborn.pydata.org/tutorial/color_palettes.html
 
+sns.histplot(data=df, x='sepal_length', hue='species', palette='Set2', edgecolor='none')
+
+# Add title
+plt.title('Figure 2. Histogram of Sepal Length for Each Species', size = 10)
+
+# Saving the plot in the repository
+plt.savefig('2_sepal_length_histogram_species.png')
+
+# checking how the plot look
+plt.show()
+
+
+
+
+
+'''
 # Creating a separate histogram for each species for 1st variable sepal_length
 plt.figure(figsize=(10, 6))
 for species, data in grouped_df:
@@ -253,17 +262,24 @@ plt.savefig('2_sepal_length_histogram_species.png')
 
 # checking how the plot look
 plt.show()
+'''
+
 
 
 
 # Histograms for each species
 # https://www.kaggle.com/code/alexisbcook/distributions/tutorial
-sns.histplot(data=df, x='sepal_width', hue='species')
+sns.histplot(data=df, x='sepal_width', hue='species', palette='Set1', edgecolor='none')
 
 # Add title
-plt.title("Histogram of sepal_width, by Species")
+plt.title('Figure 3. Histogram of Sepal Width for Each Species', size = 10)
+
+
+# Saving the plot in the repository
+plt.savefig('3_sepal_width_histogram_species.png')
 
 plt.show()
+
 '''
 
 # Creating a separate histogram for each species for 2nd variable sepal_width
@@ -285,6 +301,12 @@ plt.savefig('3_sepal_width_histogram_species.png')
 plt.show()
 
 '''
+
+# Plotting two other histograms differently 
+# Grouping the data by species
+# https://realpython.com/pandas-groupby/
+
+grouped_df = df.groupby('species')
 
 
 # Creating a separate histogram for each species for 3rd variable Petal Lenght
@@ -411,9 +433,96 @@ plt.show()
 
 
 
+# Measuring the correlation:
+
+
+# Let's get the data into numpy arrays. 
+s_len = df['sepal_length'].to_numpy()
+s_wth = df['sepal_width'].to_numpy()
+p_len = df['petal_length'].to_numpy()
+p_wth = df['petal_width'].to_numpy()
+specs = df['species'].to_numpy()
 
 
 
+# Measure the correlation
+
+corr = np.corrcoef([s_len, s_wth, p_len, p_wth])
+
+# writing to the text file the output of the correlation array
+print('Correlation array - The closer the value is to 1 the closer the data points fall to a straight line, so the linear association is stronger:')
+print('=============================================================')
+print(corr)
+print ('\n\n')
+
+
+#The best fit line or optimal relationship can be achieved by minimizing the distances of the data points from the purposed line.
+# A linear equation represents a line mathematically. The normal equation of the line is as follows:
+
+m, c = np.polyfit(p_len, p_wth, 1)
+
+print(m, c)
+
+
+
+# Create x values for best fit line (instead of using values from the dataset)
+bf_x = np.linspace(0, p_len.max()+1, 10) # takes 3 values starting from 0 ending at max body mass value +1 , giving 8 values equally spaced between those two values. 
+
+# setting y-axis
+bf_y = m * bf_x + c
+
+fig, ax = plt.subplots()
+# Plot the first set of data
+
+ax.plot(p_len, p_wth, 'x', color='blue', alpha=0.5) # alpha parameter sets the transparency level of the plotted points to 50%. It means that the points will be semi-transparent. 
+
+ax.plot(bf_x, bf_y , '-r') # 3rd parameter - plot them as red color 
+
+# Labels
+ax.set_xlabel('Petal Length (cm)')
+ax.set_ylabel('Petal Width (cm)')
+
+ax.set_title('Figure 9. Best fit line - Petal length vs Petal Width')
+
+plt.savefig('9_best_fit_line_petal.png')
+plt.show()
+
+
+### Figure correlation matrix
+
+
+# To create a heatmap I will use seaborn library based on:
+#https://blog.quantinsti.com/creating-heatmap-using-python-seaborn/
+
+corr_data = np.array([s_len, s_wth, p_len, p_wth])
+
+# Calculate the correlation coefficient matrix
+corr_coef_matrix = np.corrcoef(corr_data)
+
+# Create a heatmap
+plt.figure(figsize=(7, 6))
+heatmap = sns.heatmap(corr_coef_matrix, annot=True, cmap='PuRd', fmt='.2f', # cmap color was taken from here: https://matplotlib.org/stable/users/explain/colors/colormaps.html
+            xticklabels=['sepal_length (cm)', 'sepal_width (cm)', 'petal_length(cm)', 'petal_width(cm)'], 
+            yticklabels=['sepal_length (cm)', 'sepal_width (cm)', 'petal_length(cm)', 'petal_width(cm)'])
+
+# Add titles and labels
+plt.title('Figure 10. Correlation Coefficient Matrix')
+plt.xlabel('Iris Attributes', fontsize=14) # Set x label font size
+plt.ylabel('Iris Attributes', fontsize=14) # Set y label font size
+plt.xticks  # Rotate x-axis labels for better readability
+plt.yticks # Rotate y-axis labels for better readability
+
+# Adjust layout to prevent overlapping labels  
+plt.tight_layout() 
+
+
+# Set font size for tick labels
+heatmap.tick_params(axis='x', labelsize=8)  # Set x tick label font size
+heatmap.tick_params(axis='y', labelsize=8)  # Set y tick label font size
+
+
+plt.savefig('10_correlation_matrix.png')
+plt.show()
 
 
 

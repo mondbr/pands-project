@@ -131,3 +131,13 @@ species         0
 dtype: int64
 
 Total NaN values:0
+Correlation array - The closer the value is to 1 the closer the data points fall to a straight line, so the linear association is stronger:
+=============================================================
+[[ 1.         -0.11756978  0.87175378  0.81794113]
+ [-0.11756978  1.         -0.4284401  -0.36612593]
+ [ 0.87175378 -0.4284401   1.          0.96286543]
+ [ 0.81794113 -0.36612593  0.96286543  1.        ]]
+
+
+
+0.41575541635241153 -0.36307552131902915
