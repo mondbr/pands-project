@@ -131,6 +131,16 @@ species         0
 dtype: int64
 
 Total NaN values:0
+
+
+
+
+
+
+There is no NaN values in this dataset! We can now do the analysis : ) 
+
+
+
 Correlation array - The closer the value is to 1 the closer the data points fall to a straight line, so the linear association is stronger:
 =============================================================
 [[ 1.         -0.11756978  0.87175378  0.81794113]
@@ -140,4 +150,10 @@ Correlation array - The closer the value is to 1 the closer the data points fall
 
 
 
-0.41575541635241153 -0.36307552131902915
+
+
+-------------------------------------
+ ### END ###
+-------------------------------------
+
+
