@@ -294,7 +294,8 @@ def iris_barchart():
     # checking how the plot look
     plt.show()
 
-
+# creating a function that will create and save a histogram of each variable to png files in this repository
+# plotting histogram for each variable regardless of spiecies
 def data_hist():
     # Creates a histogram of sepal length all species
     plt.hist(df['sepal_length'], bins=8, color='skyblue', edgecolor='black', density=True)
@@ -338,7 +339,7 @@ def data_hist():
 
 
 # creating a function that will create and save a histogram of each variable to png files in this repository
-# plotting histogram for each variable
+# plotting histogram for each variable grouped by spiecies
 def iris_histograms():
     
     # https://www.kaggle.com/code/alexisbcook/distributions/tutorial
@@ -426,7 +427,7 @@ def iris_histograms():
 
 
 # creating a function that will create and save scatterplot for each variable to png files in this repository
-# plotting a scatterplot ffor each variable
+# plotting a scatterplot for each variable
 def iris_scatterplots():
 
     # plotting a scatterplot for sepal and width:
