@@ -17,6 +17,14 @@ To work on this project I had to do the research of the dataset, write a documen
 
 The summary and the presentation of my analysis is submitted in Jupyter notebook on this GitHub repository. 
 
+I used [openincolab.com](https://openincolab.com/) to generate the following clickable link. 
+
+You can open the `iris.ipynb` notebook in [Google Collab](https://colab.research.google.com/) by clicking on the below badge.
+
+<a target="_blank" href="https://colab.research.google.com/github/mondbr/pands-project/blob/main/iris.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 
 ## Use of this project 
 
@@ -42,27 +50,57 @@ The software we will use to track our progress.
 
 ## Table of contents
 
-* About Iris Dataset
+#### [Open here - Analysis of the Iris data set - *iris.ipynb*](https://github.com/mondbr/pands-project/blob/main/iris.ipynb)
+
+#### [Open here - Python program that outputs the analysis elements - *analysis.py*](https://github.com/mondbr/pands-project/blob/main/analysis.py)
+
+* About Iris Dataset (History)
+* Data set analysis - libraries and code
+    * Imports
+    * Dataframe
+    * Redirecting to the text file
+    * Data exploration
+    * Statistical summary
+    * Data visualisation
+    * Results
+    * References / Library
 
 
-## About Iris Dataset
+## Data Collection and Methodology:
 
-### Iris dataset history
+The iris flowers data was downloaded from [mwaskom/seaborn on Github](https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv) and loaded to the *analysis.py* file in this repository. 
 
-### What is in dataset?
+Learn more about Iris dataset on [Wikipedia](https://en.wikipedia.org/wiki/Iris_flower_data_set)
 
-### Dataset analysis - libraries and code
-
-### Data Visualisation 
-
-
+I worked on this project using Python programming and libraries such as Pandas, NumPy, matplotlib, and Seaborn for data analysis and visualization. I also reffered to multiple resourses available online. 
+ 
+## Results:
+ 
+ I observed very strong positive correlation (r = 0.96) between Iris petal length petal width, suggesting that flowers with longer petals are very often wider.
+ 
 ## References:
+
+* Data available at: https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv
+* Similar analysis and interpretations: 
+    * Dan Alexandru on [kaggle.com](https://www.kaggle.com/code/danalexandru/simple-analysis-of-iris-dataset)
+    * [Hackers Realm](https://www.hackersrealm.net/post/iris-dataset-analysis-using-python)
+
+* My knowledge mine:
+    * Programming and Scripting module by Andrew Beatty on Higher Diploma in Data Analytics course from ATU 2023/24.
+    * Principles of Data Analytics module by Ian McLoughlin on Higher Diploma in Data Analytics course from ATU 2023/24.
+    * w3schools
+    * pandas.pydata.org
+    * matplotlib.org
+    * geeksforgeeks.org
+    * realpython.com
+    * chat.openai.com
+
 
 ## About me: 
 
 My name is Monika Dabrowska and I am an [ATU](https://www.atu.ie/) student of first semester of the Programming and Scripting module on the Higher Diploma in Data Analytics course during Summer 2023/24.
 
-I don't have any prevoius programming experience nor knowledge of basing coding, so I am using multiple sources and references to help me to complete the assignments. 
+I am just staring my adventure with programming, so I am using multiple sources and references to help me to complete the assignments. 
 
 If you wish to contact me directly, please email me @ mondbr133@gmail.com
 
