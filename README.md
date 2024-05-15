@@ -4,7 +4,7 @@
 
 by Monika Dabrowska
 
-This repository is for the the assignment project for the Programming and Scripting module in the Higher Diploma in Data Analytics course at [ATU](https://www.atu.ie/) in the summer semester of 2023/24.
+This repository is for the the assessment project for the Programming and Scripting module in the Higher Diploma in Data Analytics course at [ATU](https://www.atu.ie/) in the summer semester of 2023/24.
 
 
 ## Assessment Overview
@@ -15,7 +15,12 @@ It's widely used in statistics, machine learning, data visualization and analysi
 
 To work on this project I had to do the research of the dataset, write a documentation and use Python code to investigate this data. 
 
-The summary and the presentation of my analysis is submitted in Jupyter notebook on this GitHub repository. 
+The summary and the presentation of my analysis is submitted in Jupyter notebook *iris.ipynb* in this GitHub repository. 
+
+The script that outputs the elements for the analysis is submitted in single python file *analysis.py* in this GitHub repository. 
+
+#### [Open here - Python program that outputs the analysis elements - *analysis.py*](https://github.com/mondbr/pands-project/blob/main/analysis.py)
+
 
 I used [openincolab.com](https://openincolab.com/) to generate the following clickable link. 
 
@@ -52,8 +57,6 @@ The software we will use to track our progress.
 
 #### [Open here - Analysis of the Iris data set - *iris.ipynb*](https://github.com/mondbr/pands-project/blob/main/iris.ipynb)
 
-#### [Open here - Python program that outputs the analysis elements - *analysis.py*](https://github.com/mondbr/pands-project/blob/main/analysis.py)
-
 * About Iris Dataset (History)
 * Data set analysis - libraries and code
     * Imports
@@ -62,15 +65,15 @@ The software we will use to track our progress.
     * Data exploration
     * Statistical summary
     * Data visualisation
-    * Results
-    * References / Library
+* Results
+* References / Library
 
 
 ## Data Collection and Methodology:
 
 The iris flowers data was downloaded from [mwaskom/seaborn on Github](https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv) and loaded to the *analysis.py* file in this repository. 
 
-Learn more about Iris dataset on [Wikipedia](https://en.wikipedia.org/wiki/Iris_flower_data_set)
+You can learn more about Iris dataset on [Wikipedia](https://en.wikipedia.org/wiki/Iris_flower_data_set).
 
 I worked on this project using Python programming and libraries such as Pandas, NumPy, matplotlib, and Seaborn for data analysis and visualization. I also reffered to multiple resourses available online. 
  
