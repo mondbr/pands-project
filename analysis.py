@@ -37,6 +37,12 @@ import seaborn as sns
 # downloading the Iris online dataset (raw file)
 df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv")
 
+# creating a dataframe selecting specific columns to be included in new data frame
+# this will be needed in some statistical analysis
+# https://www.w3schools.com/python/pandas/pandas_dataframes.asp#:~:text=What%20is%20a%20DataFrame%3F,table%20with%20rows%20and%20columns.
+num_df = pd.DataFrame(df, columns=[
+                       'sepal_length','sepal_width','petal_length','petal_width'])
+
 
 # to ignore warnings regarding a change in the figure layout in seaborn:
 # https://docs.python.org/3/library/warnings.html
@@ -90,7 +96,7 @@ def summary_file():
     print ('\n')
 
     # writing to the text file an overview of dataset using df()
-    print ('Overview of the Iris dataset:')
+    print ('Overview of the Iris dataset - First five and last five rows:')
     print ('==============================================================================')
     print(df)
     print ('\n\n')
@@ -167,6 +173,27 @@ def summary_file():
     print ('\n\n')
 
 
+    
+    # writing to the text file the output of few other statistical values using dataframe num_df() with numerical variables only
+    # writing to the text file  a var() module for info about variance in a Matrix
+    print('Dataset Variance:')
+    print('=============================================================')
+    print(num_df.var())
+    print ('\n\n')
+
+    # writing to the text file  a corr() module for info about correlation in a Matrix
+    print('Dataset Correlation:')
+    print('The closer the value is to 1 the closer the data points fall to a straight line, so the linear association is stronger')
+    print('=============================================================')
+    print(num_df.corr())
+    print ('\n\n')
+    
+    # writing to the text file  a cov() module for info about covariance in a Matrix
+    print('Dataset Covariance Matrix Of Values')
+    print('=============================================================')
+    print(num_df.cov())
+    print ('\n\n')
+    
 
     # Check for NaN values (values with no data)
     # In order to do some statistical calculations, we should not have NaN (no data) values in our dataset. 
@@ -215,7 +242,7 @@ def summary_file():
     corr = np.corrcoef([s_len, s_wth, p_len, p_wth])
 
     # writing to the text file the output of the correlation array
-    print('Correlation array - The closer the value is to 1 the closer the data points fall to a straight line, so the linear association is stronger:')
+    print('Correlation array')
     print('=============================================================')
     print(corr)
     print ('\n\n')
@@ -268,6 +295,48 @@ def iris_barchart():
     plt.show()
 
 
+def data_hist():
+    # Creates a histogram of sepal length all species
+    plt.hist(df['sepal_length'], bins=8, color='skyblue', edgecolor='black', density=True)
+    plt.title('Figure 2. Histogram of Sepal Length')
+    plt.xlabel('Sepal Length (cm)')
+    plt.ylabel('Frequency')
+    # Plotting density curve
+    sns.kdeplot(df['sepal_length'], color='red')
+    plt.savefig('2_histogram_of_sepal_length')
+    plt.show()
+
+# Creates a histogram of sepal width for all species
+    plt.hist(df['sepal_width'], bins=8, color='skyblue', edgecolor='black', density=True)
+    plt.title('Figure 3. Histogram of Sepal Width')
+    plt.xlabel('Sepal Width (cm)')
+    plt.ylabel('Frequency')
+    # Plottting density curve
+    sns.kdeplot(df['sepal_width'], color='red')
+    plt.savefig('3_histogram_of_sepal_width')
+    plt.show()
+
+# Creates a histogram of petal length for all species
+    plt.hist(df['petal_length'], bins=8, color='skyblue', edgecolor='black', density=True)
+    plt.title('Figure 4. Histogram of Petal Length')
+    plt.xlabel('Petal Length (cm)')
+    plt.ylabel('Frequency')
+    # Plotting density curve
+    sns.kdeplot(df['petal_length'], color='red')
+    plt.savefig('4_histogram_of_petal_length')
+    plt.show()
+
+# Creates a histogram of petal width for all species
+    plt.hist(df['petal_width'], bins=8, color='skyblue', edgecolor='black', density=True)
+    plt.title('Figure 5. Histogram of Petal Width')
+    plt.xlabel('Petal Width (cm)')
+    plt.ylabel('Frequency')
+    # Plotting density curve
+    sns.kdeplot(df['petal_width'], color='red')
+    plt.savefig('5_histogram_of_petal_width')
+    plt.show()
+
+
 # creating a function that will create and save a histogram of each variable to png files in this repository
 # plotting histogram for each variable
 def iris_histograms():
@@ -284,10 +353,10 @@ def iris_histograms():
     sns.histplot(data=df, x='sepal_length', hue='species', palette='Set2', edgecolor='none') 
 
     # Add title
-    plt.title('Figure 2. Histogram of Sepal Length for Each Species', size = 10)
+    plt.title('Figure 6. Histogram of Sepal Length for Each Species', size = 10)
 
     # Saving the plot in the repository
-    plt.savefig('2_sepal_length_histogram_species.png')
+    plt.savefig('6_sepal_length_histogram_species.png')
 
     # checking how the plot look
     plt.show()
@@ -299,11 +368,11 @@ def iris_histograms():
     sns.histplot(data=df, x='sepal_width', hue='species', palette='Set1', edgecolor='none')
 
     # Add title
-    plt.title('Figure 3. Histogram of Sepal Width for Each Species', size = 10)
+    plt.title('Figure 7. Histogram of Sepal Width for Each Species', size = 10)
 
 
     # Saving the plot in the repository
-    plt.savefig('3_sepal_width_histogram_species.png')
+    plt.savefig('7_sepal_width_histogram_species.png')
 
     plt.show()
 
@@ -326,11 +395,11 @@ def iris_histograms():
     # Add labels and title
     plt.xlabel('Petal Length (cm)', size = 10)
     plt.ylabel('Frequency', size = 10)
-    plt.title('Figure 4. Histogram of Petal Length for Each Species', size = 10)
+    plt.title('Figure 8. Histogram of Petal Length for Each Species', size = 10)
     plt.legend()
 
     # Save the plot in the repository
-    plt.savefig('4_petal_length_histogram_species.png')
+    plt.savefig('8_petal_length_histogram_species.png')
 
     # Show the plot
     plt.show()
@@ -346,11 +415,11 @@ def iris_histograms():
     # Adding labels and title
     plt.xlabel('Petal Width (cm)', size = 10)
     plt.ylabel('Frequency', size = 10)
-    plt.title('Figure 5. Histogram of Petal Width for Each Species', size = 10)
+    plt.title('Figure 9. Histogram of Petal Width for Each Species', size = 10)
     plt.legend()
 
     # Saving the plot in the repository
-    plt.savefig('5_petal_width_histogram_species.png')
+    plt.savefig('9_petal_width_histogram_species.png')
 
     # checking how the plot look
     plt.show()
@@ -374,9 +443,9 @@ def iris_scatterplots():
     # Adding labels and titles
     plt.xlabel('Sepal length (cm)', size = 10)
     plt.ylabel('Sepal width (cm)', size = 10)
-    plt.title('Figure 6. Sepal length and Sepal width comparison', size = 10)
+    plt.title('Figure 10. Sepal length and Sepal width comparison', size = 10)
     plt.legend()
-    plt.savefig('6_sepal-length-width_scatt.png')
+    plt.savefig('10_sepal-length-width_scatt.png')
     plt.show()
 
 
@@ -394,9 +463,9 @@ def iris_scatterplots():
     # Adding labels and titles
     plt.xlabel('Petal length (cm)', size = 10)
     plt.ylabel('Petal width (cm)', size = 10)
-    plt.title('Figure 7. Petal length and Petal width comparison', size = 10)
+    plt.title('Figure 11. Petal length and Petal width comparison', size = 10)
     plt.legend()
-    plt.savefig('7_petal-length-width_scatt.png')
+    plt.savefig('11_petal-length-width_scatt.png')
     plt.show()
 
 
@@ -410,8 +479,8 @@ def iris_pairplot():
     # Creating a scatter plot matrix with color encoding for categorical variables
     # https://stackoverflow.com/questions/43567309/how-to-add-edgecolor-for-the-hist-plot-sons
     sns.pairplot(df, vars=numeric_vars, hue='species', palette = ['fuchsia','mediumorchid','blue'], plot_kws={'edgecolor':'white'}, height=2)
-    plt.suptitle('Figure 8. Pairplot Matrix (cm)')  # Add title for the pairplot
-    plt.savefig('8_pairwise_scatter_plot.png')
+    plt.suptitle('Figure 12. Pairplot Matrix (cm)')  # Add title for the pairplot
+    plt.savefig('12_pairwise_scatter_plot.png')
 
     # Adjusting layout to prevent overlapping labels  
     #https://stackoverflow.com/questions/9603230/how-to-use-matplotlib-tight-layout-with-figure
@@ -453,9 +522,9 @@ def iris_linespace():
     # Adding labels and titles
     ax.set_xlabel('Petal Length (cm)')
     ax.set_ylabel('Petal Width (cm)')
-    ax.set_title('Figure 9. Best fit line - Petal length vs Petal Width')
+    ax.set_title('Figure 13. Best fit line - Petal length vs Petal Width')
 
-    plt.savefig('9_best_fit_line_petal.png')
+    plt.savefig('13_best_fit_line_petal.png')
     plt.show()
 
    
@@ -482,7 +551,7 @@ def iris_heatmap():
                 yticklabels=['sepal_length (cm)', 'sepal_width (cm)', 'petal_length(cm)', 'petal_width(cm)'])
 
     # Add titles and labels
-    plt.title('Figure 10. Correlation Coefficient Matrix')
+    plt.title('Figure 14. Correlation Coefficient Matrix')
     plt.xlabel('Iris Attributes', fontsize=14) # Set x label font size
     plt.ylabel('Iris Attributes', fontsize=14) # Set y label font size
     plt.xticks  # Rotate x-axis labels for better readability
@@ -497,7 +566,7 @@ def iris_heatmap():
     heatmap.tick_params(axis='y', labelsize=8)  # Set y tick label font size
 
 
-    plt.savefig('10_correlation_matrix.png')
+    plt.savefig('14_correlation_matrix.png')
     plt.show()
 
 
@@ -509,6 +578,8 @@ summary_file()
 
 iris_barchart()
 
+data_hist()
+
 iris_histograms()
 
 iris_scatterplots()
@@ -518,6 +589,8 @@ iris_pairplot()
 iris_linespace()
 
 iris_heatmap()
+
+
 
 
 # Restore the original standard output
