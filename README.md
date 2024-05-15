@@ -31,6 +31,11 @@ You can open the `iris.ipynb` notebook in [Google Collab](https://colab.research
 </a>
 
 
+<div style="text-align:center">
+<img src="https://img.freepik.com/free-photo/beautiful-fresh-blue-bloom-dew_23-2148069238.jpg?w=740&t=st=1715802277~exp=1715802877~hmac=67c7336b375d7eca3e50cce92747c0d3b8c182b61d70977cf9dda55cbf9fbdef" width=50% height=50%>
+<div style="text-align:center"><b>Artwork by www.freepik.com</b>
+</div>
+
 ## Use of this project 
 
 This project is mainly created for the assessment and educational purposes, but it can be used for further analysis. 
@@ -79,7 +84,7 @@ I worked on this project using Python programming and libraries such as Pandas, 
  
 ## Results:
  
- I observed very strong positive correlation (r = 0.96) between Iris petal length petal width, suggesting that flowers with longer petals are very often wider.
+ I observed very strong positive correlation (r = 0.96) between Iris petal length and petal width, suggesting that flowers with longer petals are very often wider.
  
 ## References:
 
