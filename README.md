@@ -58,14 +58,16 @@ The software we will use to track our progress.
 
 
 
-## Table of contents
+## Table of contents - Analysis of Iris Data set in Jupyter notebook
 
 #### [Open here - Analysis of the Iris data set - *iris.ipynb*](https://github.com/mondbr/pands-project/blob/main/iris.ipynb)
 
 * About Iris Dataset (History)
+* Iris Dataset file
 * Data set analysis - libraries and code
-    * Imports
-    * Dataframe
+    * Imports libraries and modules
+    * Import Dataset and DataFrame
+    * My functions
     * Redirecting to the text file
     * Data exploration
     * Statistical summary
