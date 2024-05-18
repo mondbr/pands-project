@@ -84,6 +84,157 @@ You can learn more about Iris dataset on [Wikipedia](https://en.wikipedia.org/wi
 
 I worked on this project using Python programming and libraries such as Pandas, NumPy, matplotlib, and Seaborn for data analysis and visualization. I also reffered to multiple resourses available online. 
  
+# Analysis of the Iris data set
+
+The below section contains an overwiev of my project about analysis of well-known Iris Dataset as part of the assessment project for Programming and Scripting module on Higher Diploma in Data Analytics course from [ATU](https://www.atu.ie/) in Summer 2023/24.
+
+I will explain my approach to the solution of given tasks, my research and references for the code I wrote and results of my analysis. 
+
+The program is written in the file [**analysis.py**](https://github.com/mondbr/pands-project/blob/main/analysis.py) saved in this repository. The file also contains comments to the code I wrote. 
+
+<div style="display: flex; justify-content: space-around;">
+  <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg/360px-Kosaciec_szczecinkowaty_Iris_setosa.jpg" alt="Iris Setosa" style="width: 310px;">
+    <p style="font-size: 10px;">Iris Setosa photo by Radomil via Wikipedia</p>
+  </div>
+  <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/640px-Iris_versicolor_3.jpg" alt="Iris Versicolor" style="width: 570px;">
+    <p style="font-size: 10px;">Iris Versicolor photo by Dlanglois Wikipedia</p>
+  </div>
+  <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/736px-Iris_virginica.jpg" alt="Iris Virginica" style="width: 500px;">
+    <p style="font-size: 10px;">Iris Virginica photo by Frank Mayfield via Wikipedia</p>
+  </div>
+</div>
+
+## About Iris Dataset (History)
+
+The *Iris flower dataset*, also known as *Fiher's Iris dataset* is a [multivariate](https://en.wikipedia.org/wiki/Multivariate_statistics) dataset popularized by British statistitian and biologist [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher) in his 1936 publication *The use of multiple measurements in taxonomic problems as an example of linear discriminant analysis*. The free access to the full article in PDF in online library can be found [here](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x). 
+
+In this article, Fisher developed and evaluated a linear function to differentiate Iris species based on the morphology of their flowers. It was the first time that the sepal and petal measures of the three Iris species as mentioned above appeared publicly.
+
+The majority of the data was collected by [Edgar Anderson](https://en.wikipedia.org/wiki/Edgar_Anderson) to quantify the morphological variation of Iris flowers from three related species - *Iris setosa*, *Iris virginica* and *Iris versicolor*. Two of the three species were collected in the [Gaspé Peninsula](https://en.wikipedia.org/wiki/Gasp%C3%A9_Peninsula) region in Canada, with all samples taken from the same pasture, picked on the same day, and measured by the same person using the same apparatus. This careful collection method ensured consistency and accuracy in the measurements.
+
+The data contains an information of 50 samples from each of three species and its four features - the length and the width of the sepals and petals, in centimeters. 
+
+The Iris data has  become a widely used tool for pattern recognition and classification tasks across various fields, including machine learning, analysis, statistics, and biology.
+
+*(source: [wikipedia](https://en.wikipedia.org/wiki/Iris_flower_data_set))*
+
+
+Iris flower features are pictured below: 
+
+<div style="text-align:center">
+<img src="https://media.licdn.com/dms/image/D5612AQFvpSLdhkfa0g/article-cover_image-shrink_600_2000/0/1694107215197?e=2147483647&v=beta&t=aSiPQP37OssvFRNT_Gjf95WZfTlr5CB3n_apgLGLrqo" width=30% height=30%>
+<div style="text-align:center; font-size:10px;"><p>Photo from Hani Abudaba on LinkedIn</p>
+</div>
+
+
+## Iris Dataset file
+***
+
+The Iris flower dataset contains a set of 150 individual records which represents three Iris spiecies:
+- Iris Setosa - 50 samples
+- Iris Virginica - 50 samples
+- Iris Versicolor - 50 samples
+
+The columns represents plant features such as:
+- Sepal Lenght in cm
+- Sepal Width in cm
+- Petal Lenght in cm
+- Petal Width in cm
+
+The Iris flowers data was downloaded from [mwaskom/seaborn on Github](https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv) and loaded to the *[analysis.py](https://github.com/mondbr/pands-project/blob/main/analysis.py)* file in this repository.
+
+## Data Set Analysis - libraries and code
+***
+In this paragraph I will explain the necessary libraries imported that are needed for this analysis, the dataset import and the code to write a script for summary creation.
+
+### Import libraries and modules
+
+    # importing nessesary libraries
+        import pandas as pd
+        import sys
+        import numpy as np 
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+
+[**pandas**](https://www.w3schools.com/python/pandas/pandas_intro.asp#:~:text=Pandas%20is%20a%20Python%20library,by%20Wes%20McKinney%20in%202008.) is a Python library that is used for workings with datasets. It offers a range of functions for analyzing, cleaning, exploring, and manipulating data. The name "Pandas" references both "Panel Data" and "Python Data Analysis." The library was created by Wes McKinney in 2008.
+In this project *pandas* is used for creating a summary of the dataset from a *.csv file. 
+
+[**sys**](https://docs.python.org/3/library/sys.html) module provides access to system-specific parameters and functions, allowing interaction with the Python runtime environment. It can be used to handle command-line arguments, manage the Python interpreter, and control input and output.
+In this project *sys* is used to redirect the standard output to a file instead to a terminal, as I will be writing the analysis to the text file called *[summary-analysis.txt](https://github.com/mondbr/pands-project/blob/main/summary_analysis.txt)*.
+
+[**NumPy**](https://numpy.org/doc/stable/user/absolute_beginners.html) is a fundamental Python library used for numerical computing. It provides support for large, multi-dimensional arrays and matrices, along with variety of mathematical functions to operate on these arrays. *NumPy* is widely used in various fields such as mathematics, statistics and data science.
+In this project *NumPy* is used to create a numerical arrays and analyse the correlation between numerical variables.
+
+[**myplotlib**](https://matplotlib.org/stable/) and its module [**pyplot**](https://matplotlib.org/stable/api/pyplot_summary.html) allows to work on mathematical calculations, array manipulations, creating plots and histograms. 
+In this project *matplotlib.pyplot* is used to plot varoius of histograms and plots of the Iris data variables.
+
+[**seaborn**](https://seaborn.pydata.org/index.html) is another Python library built on to of Matplotlib. It is used for statistical data visualisation that helps to provide a nicely looking statistcal graphics.
+In this project *seaborn* is used for plotting plots and histograms for analysis.
+
+
+
+### Import dataset and DataFrame
+
+To work on the summary, I needed to find the data online and load it to my program. 
+
+The below lines of code are used for reading the raw *.csv file available online and put into a DataFrame.
+
+A Pandas DataFrame is a 2 dimensional data structure, like a 2 dimensional array, or a table with rows and columns.
+
+Raw file contains plain text format (Comma-Separated Values) of data that will be used for my analysis. 
+
+    # downloading the Iris online dataset (raw file)
+    df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv")
+
+The above code loads the data into a DataFrame named *df*. This DataFrame contains all the columns that are in the CSV file. It is ready now to work on it in my analyis. 
+
+To be able to calculate and show statistical summary of numerical columns in some of my code, I created a new DataFrame below named *num_df* from an existing DataFrame *df*. I selected specific columns **'sepal_length', 'sepal_width', 'petal_length', 'petal_width'**, so my new DataFrame contains only these columns. I will need this in execution of a few Python methods in my code.
+
+    # creating a dataframe selecting specific columns to be included in new data frame
+    num_df = pd.DataFrame(df, columns=[
+                            'sepal_length','sepal_width','petal_length','petal_width'])
+
+
+During my work on the code in this project and project for another module, I came accross warnings being shown on my terminal. They were related to *change in the figure layout in seaborn*. With discussing this with my ATU collegues and doing research I learnt that I can use below code to simply ignore the messages being prompted. 
+
+This can be used for a cleaner output and no-distraction especially for scripts or notebooks where warnings are not critical and do not affect the results.
+
+However, while ignoring warnings can be helpful in certain situations, it's generally better to address warnings appropriately. Warnings often indicate potential issues in code or data. Ignoring them may hide important information that could tell diagnosing problems or improving quality of the code. 
+
+I was reffering to the information provided on [docs.python](https://docs.python.org/3/library/warnings.html). 
+
+
+    # to ignore warnings regarding a change in the figure layout in seaborn
+    import warnings
+    warnings.filterwarnings('ignore')
+
+Now, I will explain my approach to one of the task of this project, where I need to write my summary output to the single *.txt file. Initially I wanted to use *open()* function and *write()* method, however I found it difficult to include Python built-in functions such as *describe()* or *info()* etc, because .write() function only takes string value as an input \
+
+After further research I learnt that more useful will be using *sys.stdout()* first to re-direct the standard output to a file. 
+To be able to restore it later and come back to original output I created the below reference:
+
+I was reffering to the below sources: \
+[geeksforgeeks.com](https://www.geeksforgeeks.org/sys-stdout-write-in-python/)\
+[stackoverflow.com](https://stackoverflow.com/questions/3263672/the-difference-between-sys-stdout-write-and-print)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Results:
  
  I observed very strong positive correlation (r = 0.96) between Iris petal length and petal width, suggesting that flowers with longer petals are very often wider.
