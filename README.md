@@ -94,18 +94,19 @@ The program is written in the file [**analysis.py**](https://github.com/mondbr/p
 
 <div style="display: flex; justify-content: space-around;">
   <div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg/360px-Kosaciec_szczecinkowaty_Iris_setosa.jpg" alt="Iris Setosa" style="width: 310px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg/360px-Kosaciec_szczecinkowaty_Iris_setosa.jpg" alt="Iris Setosa" style="width: 300px;">
     <p style="font-size: 10px;">Iris Setosa photo by Radomil via Wikipedia</p>
   </div>
   <div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/640px-Iris_versicolor_3.jpg" alt="Iris Versicolor" style="width: 570px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/640px-Iris_versicolor_3.jpg" alt="Iris Versicolor" style="width: 300px;">
     <p style="font-size: 10px;">Iris Versicolor photo by Dlanglois Wikipedia</p>
   </div>
   <div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/736px-Iris_virginica.jpg" alt="Iris Virginica" style="width: 500px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/736px-Iris_virginica.jpg" alt="Iris Virginica" style="width: 300px;">
     <p style="font-size: 10px;">Iris Virginica photo by Frank Mayfield via Wikipedia</p>
   </div>
 </div>
+
 
 ## About Iris Dataset (History)
 
@@ -131,7 +132,6 @@ Iris flower features are pictured below:
 
 
 ## Iris Dataset file
-***
 
 The Iris flower dataset contains a set of 150 individual records which represents three Iris spiecies:
 - Iris Setosa - 50 samples
@@ -147,7 +147,6 @@ The columns represents plant features such as:
 The Iris flowers data was downloaded from [mwaskom/seaborn on Github](https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv) and loaded to the *[analysis.py](https://github.com/mondbr/pands-project/blob/main/analysis.py)* file in this repository.
 
 ## Data Set Analysis - libraries and code
-***
 In this paragraph I will explain the necessary libraries imported that are needed for this analysis, the dataset import and the code to write a script for summary creation.
 
 ### Import libraries and modules
@@ -219,6 +218,95 @@ To be able to restore it later and come back to original output I created the be
 I was reffering to the below sources: \
 [geeksforgeeks.com](https://www.geeksforgeeks.org/sys-stdout-write-in-python/)\
 [stackoverflow.com](https://stackoverflow.com/questions/3263672/the-difference-between-sys-stdout-write-and-print)
+
+    # saving a reference to the original standard output
+    original_stdout = sys.stdout
+
+
+### My functions 
+
+To present my work in more structured way, I organised my code in this file by creating functions to break it for smaller parts for each task that are easier to work on and read.
+The knowledge how to do it I learnt throughout the module. 
+
+The list of my functions are presented as follows and they are called out at the end of the file:
+
+- [*iris_correlation()*](#def iris_correlation)
+
+- *summary_file()*
+
+- *iris_barchart()*
+
+- *data_hist()*
+
+- *iris_histograms()*
+
+- *iris_scatterplots()*
+
+- *iris_pairplot()*
+
+- *iris_linespace()*
+
+- *iris_heatmap()*
+
+### Redirecting to the text file
+
+#### *def iris_correlation()*
+
+My first function (although that was added later while working on the code) is *def iris_correlation():* 
+I created this to assign the data into numpy arrays. I will need this later in my summary file, but also to calculate the correlation. 
+
+References: \
+Numpy arrays - ATU modules, [datacamp.com](https://www.datacamp.com/tutorial/python-numpy-tutorial) and [realpython.com](https://realpython.com/python-return-statement/)
+
+    def iris_correlation():
+        
+    # assigning data into numpy arrays. 
+        s_len = df['sepal_length'].to_numpy()
+        s_wth = df['sepal_width'].to_numpy()
+        p_len = df['petal_length'].to_numpy()
+        p_wth = df['petal_width'].to_numpy()
+
+        # returning the values from a function so can be called out later and assigned to variables
+        return s_len, s_wth, p_len, p_wth
+
+#### *def summary_file()*
+
+This is a function that is printing the output to the text file and provide varoius information about the dataset.
+
+I can use now *sys.stdout()* a default place to send a program’s text output and use print() function so all the output will be printed and saved in my dedicated .txt file. 
+
+    # creating a variable and assign a value to it - in this case a text file
+    FILENAME = 'summary_analysis.txt'
+
+    # using the stdout to redirect the standard output to a file
+    sys.stdout = open (FILENAME, 'w+t') 
+
+In my [**analysis.py**](https://github.com/mondbr/pands-project/blob/main/analysis.py) file 
+I can now use varoius of functions and methods to show summary values of the dataset:
+
+
+- **print(df)** will give us an overview of the Iris dataset. We don't see the full table with entire data, but only a few rows. That does not mean we don't have that information. Rows that are out of screen are reffered as three dots. This way, we can see first five rows and last five rows of the table instead of presenting full table with entire data, but the information is still there.
+
+
+- **print(df.describe())** will give us basic statistical values for each variable: 
+    - count - The number of not-empty values.
+    - mean - The average (mean) value.
+    - std - The standard deviation.
+    - min - The minimum value.
+    - 25% - The 25% percentile.
+    - 50% - The 50% percentile.
+    - 75% - The 75% percentile.
+    - max - The maximum value.
+
+- **print(df.info())** will give us a number of samples of each type and variable type. 
+
+- **print(df['species'].value_counts())** will provide us with the number per selected category, in this case by spiecies. 
+
+
+I also wanted to get more detailed statistical analysis, for example to display summary for 
+
+
+
 
 
 
