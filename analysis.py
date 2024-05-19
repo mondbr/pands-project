@@ -113,7 +113,7 @@ def summary_file():
     print(df.info())
     print ('\n\n')
 
-    # writing to the text file  a value counts() module for info about number of each spiecies
+    # writing to the text file  a value counts() module for info about number of each species
     print('Summary of number of each species:')
     print('=============================================================')
     print(df['species'].value_counts())
@@ -311,7 +311,7 @@ def iris_barchart():
     plt.show()
 
 # creating a function that will create and save a histogram of each variable to png files in this repository
-# plotting histogram for each variable regardless of spiecies
+# plotting histogram for each variable regardless of species
 def data_hist():
     # Creates a histogram of sepal length all species
     plt.hist(df['sepal_length'], bins=8, color='skyblue', edgecolor='black', density=True)
@@ -355,7 +355,7 @@ def data_hist():
 
 
 # creating a function that will create and save a histogram of each variable to png files in this repository
-# plotting histogram for each variable grouped by spiecies
+# plotting histogram for each variable grouped by species
 def iris_histograms():
     
     # https://www.kaggle.com/code/alexisbcook/distributions/tutorial
@@ -446,7 +446,7 @@ def iris_histograms():
 # plotting a scatterplot for each variable
 def iris_scatterplots():
 
-    # plotting a scatterplot for sepal and width:
+    # plotting a scatterplot for sepal lenght and width:
     #setting x-axis variable
     x_var_s = 'sepal_length'
 
@@ -455,7 +455,7 @@ def iris_scatterplots():
 
     # Create a scatter plot with species showed in different color 
     plt.figure(figsize = (8,6))
-    sns.scatterplot(x = x_var_s, y = y_var_s, data = df, marker = 'o', hue = 'species', palette = ['blueviolet','navy','fuchsia']) #marker style to circles #hue to specify variable and set different color to each spiecies
+    sns.scatterplot(x = x_var_s, y = y_var_s, data = df, marker = 'o', hue = 'species', palette = ['blueviolet','navy','fuchsia']) #marker style to circles #hue to specify variable and set different color to each species
 
     # Adding labels and titles
     plt.xlabel('Sepal length (cm)', size = 10)
@@ -503,7 +503,7 @@ def iris_pairplot():
     #https://stackoverflow.com/questions/9603230/how-to-use-matplotlib-tight-layout-with-figure
     plt.tight_layout() 
 
-    # Adjusting layout to prevent overlapping labels
+    # Adjusting layout to prevent overlapping parameters
     # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots_adjust.html
     plt.subplots_adjust(top=0.9, bottom=0.1, left=0.1, right=0.9, hspace=0.4, wspace=0.4)
     plt.show()
