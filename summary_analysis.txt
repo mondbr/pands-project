@@ -121,6 +121,17 @@ virginica          6.588        2.974         5.552        2.026
 
 
 Dataset Variance:
+Measures the spread or dispersion of individual data points from the mean
+=============================================================
+sepal_length    0.685694
+sepal_width     0.189979
+petal_length    3.116278
+petal_width     0.581006
+dtype: float64
+
+
+
+Dataset Variance original DataFrame df:
 =============================================================
 sepal_length    0.685694
 sepal_width     0.189979
@@ -142,6 +153,7 @@ petal_width       0.817941    -0.366126      0.962865     1.000000
 
 
 Dataset Covariance Matrix Of Values
+Measures the extent to which two variables change together, indicating the direction
 =============================================================
               sepal_length  sepal_width  petal_length  petal_width
 sepal_length      0.685694    -0.042434      1.274315     0.516271
@@ -162,12 +174,6 @@ species         0
 dtype: int64
 
 Total NaN values:0
-
-
-
-
-
-
 There is no NaN values in this dataset! We can now do the analysis : ) 
 
 

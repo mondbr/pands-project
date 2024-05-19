@@ -176,12 +176,25 @@ def summary_file():
     
     # writing to the text file the output of few other statistical values using dataframe num_df() with numerical variables only
     # writing to the text file  a var() module for info about variance in a Matrix
+    # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.var.html
     print('Dataset Variance:')
+    print('Measures the spread or dispersion of individual data points from the mean')
     print('=============================================================')
     print(num_df.var())
     print ('\n\n')
 
+    # using alternative way to print the variance
+    # the default value of numeric_only is false
+    # adding a condition numeric only = True so it will take only numerical variables
+    # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.var.html
+    print('Dataset Variance original DataFrame df:')
+    print('=============================================================')
+    print(df.var(numeric_only=True))
+    print ('\n\n')
+
+
     # writing to the text file  a corr() module for info about correlation in a Matrix
+    # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html
     print('Dataset Correlation:')
     print('The closer the value is to 1 the closer the data points fall to a straight line, so the linear association is stronger')
     print('=============================================================')
@@ -189,12 +202,15 @@ def summary_file():
     print ('\n\n')
     
     # writing to the text file  a cov() module for info about covariance in a Matrix
+    # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.cov.html
     print('Dataset Covariance Matrix Of Values')
+    print('Measures the extent to which two variables change together, indicating the direction')
     print('=============================================================')
     print(num_df.cov())
     print ('\n\n')
-    
 
+
+    
     # Check for NaN values (values with no data)
     # In order to do some statistical calculations, we should not have NaN (no data) values in our dataset. 
     # I learnt about this from similar analysis done by *Sunil Kumar Dash* on [analyticsvidhya.com]
@@ -220,11 +236,11 @@ def summary_file():
     print('NaN values per column:')
     print(nan_count_per_column)
     print(f'\nTotal NaN values:{(total_nan_count)}')
-    print ('\n\n')
+    
 
     # checking the number of NaN values and return the specific output based of the number of NaNs. 
     if total_nan_count == 0:
-        print ('\n\n')
+        
         print('There is no NaN values in this dataset! We can now do the analysis : ) ')
         print ('\n\n')
 

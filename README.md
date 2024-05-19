@@ -107,6 +107,11 @@ The program is written in the file [**analysis.py**](https://github.com/mondbr/p
   </div>
 </div>
 
+<div style="text-align: center;">
+    <img src="Spiecies_image" width=30% height=30%>
+    <p style="font-size: 10px;">Photo edit by Monika Dabrowska, photos via Wikipedia</p>
+</div>
+
 
 ## About Iris Dataset (History)
 
@@ -214,7 +219,7 @@ I was reffering to the information provided on [docs.python](https://docs.python
     import warnings
     warnings.filterwarnings('ignore')
 
-Now, I will explain my approach to one of the task of this project, where I need to write my summary output to the single *.txt file. Initially I wanted to use *open()* function and *write()* method, however I found it difficult to include Python built-in functions such as *describe()* or *info()* etc, because .write() function only takes string value as an input \
+Now, I will explain my approach to one of the task of this project, where I need to write my summary output to the single *.txt file. Initially I wanted to use *open()* function and *write()* method, however I found it difficult to include Python built-in functions such as *describe()* or *info()* etc, because .write() function only takes string value as an input.
 
 After further research I learnt that more useful will be using *sys.stdout()* first to re-direct the standard output to a file. 
 To be able to restore it later and come back to original output I created the below reference:
@@ -236,7 +241,9 @@ The list of my functions are presented as follows and they are called out at the
 
 - [*iris_correlation()*](#iris_correlation())
 
-- *summary_file()*
+- [*summary_file()*](#summary_file())
+
+    - [*def summary_stats()*](#summary_stats())
 
 - *iris_barchart()*
 
@@ -254,7 +261,8 @@ The list of my functions are presented as follows and they are called out at the
 
 ### Redirecting to the text file
 
-####*def* *iris_correlation()*
+#### *def* *iris_correlation()*
+===
 
 My first function (although that was added later while working on the code) is *def iris_correlation():* 
 I created this to assign the data into numpy arrays. I will need this later in my summary file, but also to calculate the correlation. 
@@ -273,11 +281,12 @@ Numpy arrays - ATU modules, [datacamp.com](https://www.datacamp.com/tutorial/pyt
         # returning the values from a function so can be called out later and assigned to variables
         return s_len, s_wth, p_len, p_wth
 
-#### *def summary_file()*
+#### *def* *summary_file()*
+===
 
 This is a function that is printing the output to the text file and provide varoius information about the dataset.
 
-I can use now *sys.stdout()* a default place to send a program’s text output and use print() function so all the output will be printed and saved in my dedicated .txt file. 
+I can use now *sys.stdout()* to set a default place to send a program’s text output and use print() function so all the output will be printed and saved in my dedicated .txt file. 
 
     # creating a variable and assign a value to it - in this case a text file
     FILENAME = 'summary_analysis.txt'
@@ -366,7 +375,219 @@ The program output is:
     Name: count, dtype: int64
 
 
-I also wanted to get more detailed statistical analysis, for example to display summary for 
+I also wanted to get more detailed statistical analysis, for example to display summary for each variable individually. To do this, I decided to create another function, inside the current one, as the same action will be applied to 4 variables. 
+
+##### *def* *summary_stats()*
+===
+
+The code: 
+
+    # Iterate over each variable name
+        for var in var_names:
+
+            # using describe() module get the basic statistic for variables
+            summary = data[var].describe()
+    
+            # Extracting mean, standard deviation, minimum, and maximum from the summary statistics above
+            mean = summary['mean']
+            std_dev = summary['std']
+            minimum = summary['min']
+            maximum = summary['max']
+
+I started with a *for* loop that go over each element in the list 'var names'. Each element represents a variable name from the DataFrame. 
+Then, for each variable name in 'var_names' the 'describe()' method generates a summary statistic for the variable. 
+Next, I extracted specific statistics from the summary: mean, standard deviation, min value and max value. 
+
+- **print(f'{summary_stats(df,variables)}')**
+
+After creating listo of variable names, and printing out the function created above using *print(f'{summary_stats(df,variables)}')*, the output is as follows:
+
+    Summary statistics for sepal_length:
+    --------------------------------------
+    Mean:  5.843333333333334
+    Standard Deviation:  0.8280661279778629
+    Minimum:  4.3
+    Maximum:  7.9
+
+    Summary statistics for sepal_width:
+    --------------------------------------
+    Mean:  3.0573333333333337
+    Standard Deviation:  0.435866284936698
+    Minimum:  2.0
+    Maximum:  4.4
+
+    Summary statistics for petal_length:
+    --------------------------------------
+    Mean:  3.7580000000000005
+    Standard Deviation:  1.7652982332594667 
+    Minimum:  1.0
+    Maximum:  6.9
+
+    Summary statistics for petal_width:
+    --------------------------------------
+    Mean:  1.1993333333333336
+    Standard Deviation:  0.7622376689603465
+    Minimum:  0.1
+    Maximum:  2.5
+
+- **print(average_val)**
+
+Then I wanted to see the the average value for each variable for each species. After grouping DataFrame df by the 'spiecies' I calculated the mean of each numerical column for each species group.
+I was reffering to information available on [pandas.pydata.org](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)
+
+The output is:
+
+    Average value for each variable for each species (cm):
+    =============================================================
+        sepal_length  sepal_width  petal_length  petal_width
+    species                                                         
+    setosa             5.006        3.428         1.462        0.246
+    versicolor         5.936        2.770         4.260        1.326
+    virginica          6.588        2.974         5.552        2.026
+
+
+
+- **print(num_df.var()), print(num_df.corr()), print(num_df.cov())**
+
+I was looking for the informaton how I can print other statistical values such as variance, correlation and covariance. By following the below links I was able to present this information in a Matrix of values:
+
+[pandas.DataFrame.var](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.var.html)
+[pandas.DataFrame.cov](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.cov.html)
+[pandas.DataFrame.corr](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html)
+
+As the default value of *numeric_only* is false, that is why I was getting error while I was using my original DataFrame *df*, since there are string variables (spiecies). 
+To fix that problem I decided to create a new DataFrame *num_df* as mentioned in one of the paragraph before, with only numeric variables. However, just adding a condition to original DataFrame *(df.var(numeric_only=True))* would give me the same result. For my educational purposes I decided to keep those two options for future reference. 
+
+The output is:
+
+    Dataset Variance:
+    Measures the spread or dispersion of individual data points from the mean
+    =============================================================
+    sepal_length    0.685694
+    sepal_width     0.189979
+    petal_length    3.116278
+    petal_width     0.581006
+    dtype: float64
+
+
+
+    Dataset Variance original DataFrame df:
+    =============================================================
+    sepal_length    0.685694
+    sepal_width     0.189979
+    petal_length    3.116278
+    petal_width     0.581006
+    dtype: float64
+
+
+
+    Dataset Correlation:
+    The closer the value is to 1 the closer the data points fall to a straight line, so the linear association is stronger
+    =============================================================
+                sepal_length  sepal_width  petal_length  petal_width
+    sepal_length      1.000000    -0.117570      0.871754     0.817941
+    sepal_width      -0.117570     1.000000     -0.428440    -0.366126
+    petal_length      0.871754    -0.428440      1.000000     0.962865
+    petal_width       0.817941    -0.366126      0.962865     1.000000
+
+
+
+    Dataset Covariance Matrix Of Values
+    Measures the extent to which two variables change together, indicating the direction
+    =============================================================
+                sepal_length  sepal_width  petal_length  petal_width
+    sepal_length      0.685694    -0.042434      1.274315     0.516271
+    sepal_width      -0.042434     0.189979     -0.329656    -0.121639
+    petal_length      1.274315    -0.329656      3.116278     1.295609
+    petal_width       0.516271    -0.121639      1.295609     0.581006
+
+
+- **nan_values = df.isna()**
+
+With having a small experience already with working on another project for ATU assessment, I came across the situation where I could not work on some analysis where I have NaN (no data) values in my data set. 
+I decided then to check if there are any NaN values in this dataset just in case that this my impact my correlation analysis I wanted to do later on:
+To check that I ran a script checking the NaN values in dataset, count them and print the output depending on the number of NaN values using *if* statement. If the number would be more than 0, that would mean there are some NaN values and I would need to do additional manipulation on dataset to clear/ignore NaN values. 
+
+I learnt about this from similar analysis done by *Sunil Kumar Dash* on [analyticsvidhya.com](https://www.analyticsvidhya.com/blog/2022/04/data-exploration-and-visualisation-using-palmer-penguins-dataset/). More information of how to delete the NaN data I found on [www.medium.com](https://medium.com/@TheDataScience-ProF/nan-removal-with-python-3d97b954d16d#:~:text=Removing%20NaN%20values%20from%20a%20list%20in%20Python%20can%20be,remove%20them%20from%20a%20list.)
+and [*ashbabkhan12*](https://ashbabkhan12.medium.com/how-to-remove-nan-values-in-data-using-python-8f959e3d5fbc) blog. 
+
+
+The output of this script is:
+
+    Number of NaN (no data) values
+    =============================================================
+    NaN values per column:
+    sepal_length    0
+    sepal_width     0
+    petal_length    0
+    petal_width     0
+    species         0
+    dtype: int64
+
+    Total NaN values:0
+    There is no NaN values in this dataset! We can now do the analysis : )
+
+
+- **print(corr)**
+
+This is another way to check the correlation, this time in numpy array. We were discussing this during the ATU modules. 
+I decided to keep this in my summary_analysis.txt file as I will need that later in my data visualisation. 
+I called a function iris_correlation and assigned four numerical variables that I will neeed. It will return four arrays corresponding to different measurements (such as sepal length, sepal width, petal length, and petal width) from the iris dataset.
+
+Then, by using np.corrcoef() function from the NumPy library I calculated the Pearson correlation coefficients between variables to find the relationship between the variables. 
+
+The code is: 
+
+    # checking the correlation
+        # assigning arrays from iris_correlation() funkction to its corresponding variable so we can use it
+        s_len, s_wth, p_len, p_wth = iris_correlation()
+
+        # i learnt about the correlation in python in a ATU module 'Principles in Data Analytics 23/24'
+        corr = np.corrcoef([s_len, s_wth, p_len, p_wth])
+
+        # writing to the text file the output of the correlation array
+        print('Correlation array')
+        print('=============================================================')
+        print(corr)
+        print ('\n\n')
+
+The output is:
+
+    Correlation array
+    =============================================================
+    [[ 1.         -0.11756978  0.87175378  0.81794113]
+    [-0.11756978  1.         -0.4284401  -0.36612593]
+    [ 0.87175378 -0.4284401   1.          0.96286543]
+    [ 0.81794113 -0.36612593  0.96286543  1.        ]]
+
+By the above we can tell that the strongest positive correlation is 0.96 between petal lenght (3rd) and petal width (4th). 
+
+#### Summary
+
+In the above code I presented a numerous examples of how to show the summary of the Iris Dataset. I have not only practised of how to work on the dataset, but also how to re-direct the input to be presented in a text file with a good looking, readable format. To tell the user, that the file is finished, I added a simple print **END** in the text file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
