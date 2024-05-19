@@ -463,7 +463,7 @@ The output is:
 - **nan_values = df.isna()**
 
 With having a small experience already with working on another project for ATU assessment, I came across the situation where I could not work on some analysis where I have NaN (no data) values in my data set. 
-I decided then to check if there are any NaN values in this dataset just in case that this my impact my correlation analysis I wanted to do later on:
+I decided then to check if there are any NaN values in this dataset just in case that this may impact my correlation analysis I wanted to do later on.
 To check that, I ran a script checking the NaN values in dataset, count them and print the output depending on the number of NaN values using *if* statement. If the number would be more than 0, that would mean there are some NaN values and I would need to do additional manipulation on dataset to clear/ignore NaN values. 
 
 I learnt about this from similar analysis done by *Sunil Kumar Dash* on [analyticsvidhya.com](https://www.analyticsvidhya.com/blog/2022/04/data-exploration-and-visualisation-using-palmer-penguins-dataset/). More information of how to delete the NaN data I found on [www.medium.com](https://medium.com/@TheDataScience-ProF/nan-removal-with-python-3d97b954d16d#:~:text=Removing%20NaN%20values%20from%20a%20list%20in%20Python%20can%20be,remove%20them%20from%20a%20list.) and [*ashbabkhan12*](https://ashbabkhan12.medium.com/how-to-remove-nan-values-in-data-using-python-8f959e3d5fbc) blog. 
@@ -517,7 +517,7 @@ The output is:
     [ 0.87175378 -0.4284401   1.          0.96286543]
     [ 0.81794113 -0.36612593  0.96286543  1.        ]]
 
-By the above we can tell that the strongest positive correlation is 0.96 between petal lenght (3<sup>[*st*](https://www.w3schools.com/tags/tag_sup.asp)</sup>) and petal width (4<sup>st</sup>). 
+By the above we can tell that the strongest positive correlation is 0.96 between petal lenght (3<sup>[*rd*](https://www.w3schools.com/tags/tag_sup.asp)</sup>) and petal width (4<sup>st</sup>). 
 
 #### **Summary**
 
@@ -525,7 +525,7 @@ In the above code I presented a numerous examples of how to show the summary of 
 
 ### Data visualisation and plots
 
-After working on some text descriptions and summaries, in this section I will present my work on visualising the dataset in a barchart, histograms, pairplots scatterplot and heatmap. 
+After working on some text descriptions and summaries, in this section I will present my work on visualising the dataset in a barchart, histograms, pairplots, scatterplot and heatmap. 
 For each of the type I created a separate function that will create a plot, show it to the user and save in the repository as a *.png file. 
 
 #### Barchart and Histograms
@@ -535,6 +535,7 @@ For each of the type I created a separate function that will create a plot, show
 Firstly, I wanted to present a bar chart for Iris dataset with a function *def iris_barchart()*: that will show the number of Iris flowers of each species:
 
 The code is: 
+
     # Setting the variable and using value counts to count them.
     sp_counts = df['species'].value_counts() 
 
@@ -601,7 +602,7 @@ With use of matplotlib.pyplot I plotted the below histograms. Majority of the pa
 - *density=True* normalizes the histogram so that the area under the histogram equals 1,
 - *plt.title, plt.xlabel and plt.ylabel* are setting titles of the histogram
 
-I also decided that I would like to see a line that shows how data is spread out across different values. I was reffering to information available on [seaborn.pydata.org](https://seaborn.pydata.org/generated/seaborn.kdeplot.html) that helped me to create a line to show that shape called a density curve with using seaborn.kdeplot(). 
+I also decided that I would like to see a line that shows how data is spread out across different values. I was reffering to information available on [seaborn.pydata.org](https://seaborn.pydata.org/generated/seaborn.kdeplot.html) that helped me to create a line to show that shape called a density curve with using *seaborn.kdeplot()*. 
 
 After that I use the code to save the a *.png file with specific title but also show to the user for a reference. 
 
@@ -644,7 +645,8 @@ The code with *sns.histplot()*:
 
 The code with *plt.figure()* with *plt.hist()*
 
- Creating a separate histogram for each species for 4rd variable Petal Width
+
+    Creating a separate histogram for each species for 4rd variable Petal Width
     plt.figure(figsize=(10, 6))
     for species, data in grouped_df:
         plt.hist(data['petal_width'], bins=5, alpha=0.5, label=species)
@@ -773,7 +775,7 @@ The best fit line or optimal relationship can be achieved by minimizing the dist
 A linear equation represents a line mathematically. The normal equation of the line is as follows: 
 
 
-$ y  = mx + c = p_1 x^1 + p_0 = p_1 x + p_0 $
+$y  = mx + c = p_1 x^1 + p_0 = p_1 x + p_0$
 
 I wanted to use this in this analysis. Therefore I created a new function *def iris_linespace():* so I could create a scatterplot and plot the best fit line to it: 
 
@@ -817,7 +819,7 @@ The above line on the plot allowes us to predict Petal Width (y) for a given Pet
 
 ##### *def* *iris_heatmap():*
 
-Now let's visualise the correlation between variables. In other words, I wanted to present a correlation matrix as a graphic. To do this, I used *sns.heatmap()* from Seaborn Library. I was reffering to [blog.quantinsti.com](https://blog.quantinsti.com/creating-heatmap-using-python-seaborn/),[datacamp.com](https://www.datacamp.com/tutorial/seaborn-heatmaps) and [geeksforgeeks.org](https://www.geeksforgeeks.org/seaborn-heatmap-a-comprehensive-guide/). 
+Now let's visualise the correlation between variables. In other words, I wanted to present a correlation matrix as a graphic. To do this, I used *sns.heatmap()* from Seaborn Library. I was reffering to [blog.quantinsti.com](https://blog.quantinsti.com/creating-heatmap-using-python-seaborn/), [datacamp.com](https://www.datacamp.com/tutorial/seaborn-heatmaps) and [geeksforgeeks.org](https://www.geeksforgeeks.org/seaborn-heatmap-a-comprehensive-guide/). 
 I created a code that generates a heatmap to visualize the correlation coefficient matrix of the sepal and petal dimensions in the Iris dataset. It shows how strongly each pair of variables is correlated with each other.
 
 The code is: 
@@ -862,14 +864,14 @@ I observed very strong positive correlation (r = 0.96) between Iris petal length
 
 ### Finalizing the file 
 
-At the bottom of my analysis.py file I called out all the functions so they can be executed and written to txt file and all plots can be shown to the user. After that I used *sys.stdout = original_stdout* to restore the original standard output. To check if it works, I added a simple code to print the 'END' text in my console to make sure that program has finished. 
+At the bottom of my analysis.py file I called out all the functions so they can be executed and written to text file and all plots can be shown to the user. After that I used *sys.stdout = original_stdout* to restore the original standard output. To check if it works, I added a simple code to print the 'END' text in my console to make sure that program has finished. 
 
 
 ## Results:
  
  The summary of the data that was presented in the [summary_analysis.txt](https://github.com/mondbr/pands-project/blob/main/summary_analysis.txt) file allows us to see a varoius of statistical values such as count of each column, average value, standard deviation, minimum values and maximum values etc that gives us a picture of the data that is being reviewed. 
  The sepal lenght of all species vary between 4.3cm and 7.9cm, sepal width vary between 2cm and 4.4cm. 
- Petal parameters are vary from 1cm to 6.9cm for its lenght and 0.1cm to 2.5cm for width.
+ Petal parameters vary from 1cm to 6.9cm for its lenght and 0.1cm to 2.5cm for width.
 
  Taking into consideration petal length and width, and petal and sepal parameters, Iris virginica has the biggest flowers. Iris Setosa is the smallest in our data. 
  With observed very strong positive correlation (r = 0.96) between Iris petal length and petal width, we can say that flowers with longer petals are very often wider.
