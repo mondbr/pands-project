@@ -62,14 +62,14 @@ The software we will use to track our progress.
 
 #### [Open here - Analysis of the Iris data set - *iris.ipynb*](https://github.com/mondbr/pands-project/blob/main/iris.ipynb)
 
-* About Iris Dataset (History)
-* Iris Dataset file
-* Data set analysis - libraries and code
-    * Imports libraries and modules
-    * Import Dataset and DataFrame
-    * My functions
-    * Redirecting to the text file
-    * Data exploration
+* [About Iris Dataset (History)](#about-iris-dataset-history)
+* [Iris Dataset file](#iris-dataset-file)
+* [Data set analysis - libraries and code](#data-set-analysis---libraries-and-code)
+    * [Imports libraries and modules](#import-libraries-and-modules)
+    * [Import Dataset and DataFrame](#import-dataset-and-dataframe)
+    * [My functions](#my-functions)
+    * [Redirecting summary to the text file](#redirecting-summary-to-the-text-file)
+    * Data visualisation and plots
     * Statistical summary
     * Data visualisation
 * Results
@@ -108,7 +108,7 @@ The program is written in the file [**analysis.py**](https://github.com/mondbr/p
 </div>
 
 <div style="text-align: center;">
-    <img src="Spiecies_image" width=30% height=30%>
+    <img src="https://github.com/mondbr/pands-project/blob/main/Spiecies_image.png" width=30% height=30%>
     <p style="font-size: 10px;">Photo edit by Monika Dabrowska, photos via Wikipedia</p>
 </div>
 
@@ -239,11 +239,11 @@ The knowledge how to do it I learnt throughout the module.
 
 The list of my functions are presented as follows and they are called out at the end of the file:
 
-- [*iris_correlation()*](#iris_correlation())
+- [*iris_correlation()*](#def-iris_correlation)
 
-- [*summary_file()*](#summary_file())
+- [*summary_file()*](#def-summary_file)
 
-    - [*def summary_stats()*](#summary_stats())
+    - [*def summary_stats()*](#def-summary_stats)
 
 - *iris_barchart()*
 
@@ -259,10 +259,9 @@ The list of my functions are presented as follows and they are called out at the
 
 - *iris_heatmap()*
 
-### Redirecting to the text file
+### Redirecting summary to the text file
 
 #### *def* *iris_correlation()*
-===
 
 My first function (although that was added later while working on the code) is *def iris_correlation():* 
 I created this to assign the data into numpy arrays. I will need this later in my summary file, but also to calculate the correlation. 
@@ -282,7 +281,6 @@ Numpy arrays - ATU modules, [datacamp.com](https://www.datacamp.com/tutorial/pyt
         return s_len, s_wth, p_len, p_wth
 
 #### *def* *summary_file()*
-===
 
 This is a function that is printing the output to the text file and provide varoius information about the dataset.
 
@@ -378,7 +376,6 @@ The program output is:
 I also wanted to get more detailed statistical analysis, for example to display summary for each variable individually. To do this, I decided to create another function, inside the current one, as the same action will be applied to 4 variables. 
 
 ##### *def* *summary_stats()*
-===
 
 The code: 
 
@@ -565,6 +562,26 @@ By the above we can tell that the strongest positive correlation is 0.96 between
 #### Summary
 
 In the above code I presented a numerous examples of how to show the summary of the Iris Dataset. I have not only practised of how to work on the dataset, but also how to re-direct the input to be presented in a text file with a good looking, readable format. To tell the user, that the file is finished, I added a simple print **END** in the text file.
+
+### Data visualisation and plots
+
+After working on some text descriptions and summaries, in this section I will present my work on visualising the dataset in a barchart, histograms, pairplots scatterplot and heatmap. 
+For each of the type I created a separate function that will create a plot, show it to the user and save in the repository as a *.png file. 
+
+#### Barchart and Histograms
+
+Firstly, I wanted to present a bar chart for Iris dataset with a function def iris_barchart():
+
+
+<div style="text-align: center;">
+    <img src="https://github.com/mondbr/pands-project/blob/main/1_species_barchart.png" width=30% height=30%>
+</div>
+
+
+
+
+
+
 
 
 
