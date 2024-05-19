@@ -94,15 +94,15 @@ The program is written in the file [**analysis.py**](https://github.com/mondbr/p
 
 <div style="display: flex; justify-content: space-around;">
   <div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg/360px-Kosaciec_szczecinkowaty_Iris_setosa.jpg" alt="Iris Setosa" style="width: 300px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg/360px-Kosaciec_szczecinkowaty_Iris_setosa.jpg" alt="Iris Setosa" style="width: 100px;">
     <p style="font-size: 10px;">Iris Setosa photo by Radomil via Wikipedia</p>
   </div>
   <div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/640px-Iris_versicolor_3.jpg" alt="Iris Versicolor" style="width: 300px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/640px-Iris_versicolor_3.jpg" alt="Iris Versicolor" style="width: 100px;">
     <p style="font-size: 10px;">Iris Versicolor photo by Dlanglois Wikipedia</p>
   </div>
   <div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/736px-Iris_virginica.jpg" alt="Iris Virginica" style="width: 300px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/736px-Iris_virginica.jpg" alt="Iris Virginica" style="width: 100px;">
     <p style="font-size: 10px;">Iris Virginica photo by Frank Mayfield via Wikipedia</p>
   </div>
 </div>
@@ -130,6 +130,10 @@ Iris flower features are pictured below:
 <div style="text-align:center; font-size:10px;"><p>Photo from Hani Abudaba on LinkedIn</p>
 </div>
 
+<div style="text-align: center;">
+    <img src="https://media.licdn.com/dms/image/D5612AQFvpSLdhkfa0g/article-cover_image-shrink_600_2000/0/1694107215197?e=2147483647&v=beta&t=aSiPQP37OssvFRNT_Gjf95WZfTlr5CB3n_apgLGLrqo" width=30% height=30%>
+    <p style="font-size: 10px;">Photo from Hani Abudaba on LinkedIn</p>
+</div>
 
 ## Iris Dataset file
 
@@ -230,7 +234,7 @@ The knowledge how to do it I learnt throughout the module.
 
 The list of my functions are presented as follows and they are called out at the end of the file:
 
-- [*iris_correlation()*](#def iris_correlation)
+- [*iris_correlation()*](#iris_correlation())
 
 - *summary_file()*
 
@@ -250,7 +254,7 @@ The list of my functions are presented as follows and they are called out at the
 
 ### Redirecting to the text file
 
-#### *def iris_correlation()*
+####*def* *iris_correlation()*
 
 My first function (although that was added later while working on the code) is *def iris_correlation():* 
 I created this to assign the data into numpy arrays. I will need this later in my summary file, but also to calculate the correlation. 
@@ -287,8 +291,42 @@ I can now use varoius of functions and methods to show summary values of the dat
 
 - **print(df)** will give us an overview of the Iris dataset. We don't see the full table with entire data, but only a few rows. That does not mean we don't have that information. Rows that are out of screen are reffered as three dots. This way, we can see first five rows and last five rows of the table instead of presenting full table with entire data, but the information is still there.
 
+We run the program:
+
+    $ analysis.py
+
+The program output is: 
+
+    sepal_length  sepal_width  petal_length  petal_width    species
+    0             5.1          3.5           1.4          0.2     setosa
+    1             4.9          3.0           1.4          0.2     setosa
+    2             4.7          3.2           1.3          0.2     setosa
+    3             4.6          3.1           1.5          0.2     setosa
+    4             5.0          3.6           1.4          0.2     setosa
+    ..            ...          ...           ...          ...        ...
+    145           6.7          3.0           5.2          2.3  virginica
+    146           6.3          2.5           5.0          1.9  virginica
+    147           6.5          3.0           5.2          2.0  virginica
+    148           6.2          3.4           5.4          2.3  virginica
+    149           5.9          3.0           5.1          1.8  virginica
+
 
 - **print(df.describe())** will give us basic statistical values for each variable: 
+
+The program output is: 
+
+    sepal_length  sepal_width  petal_length  petal_width
+    count    150.000000   150.000000    150.000000   150.000000
+    mean       5.843333     3.057333      3.758000     1.199333
+    std        0.828066     0.435866      1.765298     0.762238
+    min        4.300000     2.000000      1.000000     0.100000
+    25%        5.100000     2.800000      1.600000     0.300000
+    50%        5.800000     3.000000      4.350000     1.300000
+    75%        6.400000     3.300000      5.100000     1.800000
+    max        7.900000     4.400000      6.900000     2.500000
+
+Where each value states as follows:
+
     - count - The number of not-empty values.
     - mean - The average (mean) value.
     - std - The standard deviation.
@@ -300,7 +338,32 @@ I can now use varoius of functions and methods to show summary values of the dat
 
 - **print(df.info())** will give us a number of samples of each type and variable type. 
 
+The program output is: 
+
+    RangeIndex: 150 entries, 0 to 149
+    Data columns (total 5 columns):
+       Column        Non-Null Count  Dtype  
+    ---  ------        --------------  -----  
+    0   sepal_length  150 non-null    float64
+    1   sepal_width   150 non-null    float64
+    2   petal_length  150 non-null    float64
+    3   petal_width   150 non-null    float64
+    4   species       150 non-null    object 
+    dtypes: float64(4), object(1)
+    memory usage: 6.0+ KB
+    None
+
+
+
 - **print(df['species'].value_counts())** will provide us with the number per selected category, in this case by spiecies. 
+
+The program output is: 
+
+    species
+    setosa        50
+    versicolor    50
+    virginica     50
+    Name: count, dtype: int64
 
 
 I also wanted to get more detailed statistical analysis, for example to display summary for 
