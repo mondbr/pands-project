@@ -14,21 +14,10 @@ It is a very popular dataset in data analytics particularly for learning purpose
 It's widely used in statistics, machine learning, data visualization and analysis due to its relatively small size and easy-to-understand structure.
 
 To work on this project I had to do the research of the dataset, write a documentation and use Python code to investigate this data. 
-
-The summary and the presentation of my analysis is submitted in Jupyter notebook *iris.ipynb* in this GitHub repository. 
-
+ 
 The script that outputs the elements for the analysis is submitted in single python file *analysis.py* in this GitHub repository. 
 
 #### [Open here - Python program that outputs the analysis elements - *analysis.py*](https://github.com/mondbr/pands-project/blob/main/analysis.py)
-
-
-I used [openincolab.com](https://openincolab.com/) to generate the following clickable link. 
-
-You can open the `iris.ipynb` notebook in [Google Collab](https://colab.research.google.com/) by clicking on the below badge.
-
-<a target="_blank" href="https://colab.research.google.com/github/mondbr/pands-project/blob/main/iris.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
 
 
 <div style="text-align:center">
@@ -60,8 +49,6 @@ The software we will use to track our progress.
 
 ## Table of contents - Analysis of Iris Data set in Jupyter notebook
 
-#### [Open here - Analysis of the Iris data set - *iris.ipynb*](https://github.com/mondbr/pands-project/blob/main/iris.ipynb)
-
 * [About Iris Dataset (History)](#about-iris-dataset-history)
 * [Iris Dataset file](#iris-dataset-file)
 * [Data set analysis - libraries and code](#data-set-analysis---libraries-and-code)
@@ -92,23 +79,8 @@ I will explain my approach to the solution of given tasks, my research and refer
 
 The program is written in the file [**analysis.py**](https://github.com/mondbr/pands-project/blob/main/analysis.py) saved in this repository. The file also contains comments to the code I wrote. 
 
-<div style="display: flex; justify-content: space-around;">
-  <div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg/360px-Kosaciec_szczecinkowaty_Iris_setosa.jpg" alt="Iris Setosa" style="width: 100px;">
-    <p style="font-size: 10px;">Iris Setosa photo by Radomil via Wikipedia</p>
-  </div>
-  <div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/640px-Iris_versicolor_3.jpg" alt="Iris Versicolor" style="width: 100px;">
-    <p style="font-size: 10px;">Iris Versicolor photo by Dlanglois Wikipedia</p>
-  </div>
-  <div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/736px-Iris_virginica.jpg" alt="Iris Virginica" style="width: 100px;">
-    <p style="font-size: 10px;">Iris Virginica photo by Frank Mayfield via Wikipedia</p>
-  </div>
-</div>
-
 <div style="text-align: center;">
-    <img src="https://github.com/mondbr/pands-project/blob/main/Spiecies_image.png" width=30% height=30%>
+    <img src="https://github.com/mondbr/pands-project/blob/main/Spiecies_image.png">
     <p style="font-size: 10px;">Photo edit by Monika Dabrowska, photos via Wikipedia</p>
 </div>
 
@@ -129,11 +101,6 @@ The Iris data has  become a widely used tool for pattern recognition and classif
 
 
 Iris flower features are pictured below: 
-
-<div style="text-align:center">
-<img src="https://media.licdn.com/dms/image/D5612AQFvpSLdhkfa0g/article-cover_image-shrink_600_2000/0/1694107215197?e=2147483647&v=beta&t=aSiPQP37OssvFRNT_Gjf95WZfTlr5CB3n_apgLGLrqo" width=30% height=30%>
-<div style="text-align:center; font-size:10px;"><p>Photo from Hani Abudaba on LinkedIn</p>
-</div>
 
 <div style="text-align: center;">
     <img src="https://media.licdn.com/dms/image/D5612AQFvpSLdhkfa0g/article-cover_image-shrink_600_2000/0/1694107215197?e=2147483647&v=beta&t=aSiPQP37OssvFRNT_Gjf95WZfTlr5CB3n_apgLGLrqo" width=30% height=30%>
@@ -429,7 +396,7 @@ After creating listo of variable names, and printing out the function created ab
 
 - **print(average_val)**
 
-Then I wanted to see the the average value for each variable for each species. After grouping DataFrame df by the 'spiecies' I calculated the mean of each numerical column for each species group.
+Then I wanted to see the the average value for each variable for each species. After grouping DataFrame df by the 'species' I calculated the mean of each numerical column for each species group.
 I was reffering to information available on [pandas.pydata.org](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)
 
 The output is:
@@ -570,16 +537,62 @@ For each of the type I created a separate function that will create a plot, show
 
 #### Barchart and Histograms
 
-Firstly, I wanted to present a bar chart for Iris dataset with a function def iris_barchart():
+Firstly, I wanted to present a bar chart for Iris dataset with a function *def iris_barchart()*: that will show the number of Iris flowers of each species:
 
 
 <div style="text-align: center;">
-    <img src="https://github.com/mondbr/pands-project/blob/main/1_species_barchart.png" width=30% height=30%>
+    <img src="https://github.com/mondbr/pands-project/blob/main/1_species_barchart.png" width=70% height=70%>
+</div>
+
+The above visualisation tells us that there is 50 samples of each species.
+
+**Histograms**
+
+Function *def data_hist():*  creates and saves a histogram of each variable to png files in this repository. I will present here a code for one of the variable, *sepal_length*, as the code is similar for the other variables:
+
+The code is: 
+
+    # Creates a histogram of sepal length all species
+    plt.hist(df['sepal_length'], bins=8, color='skyblue', edgecolor='black', density=True)
+    plt.title('Figure 2. Histogram of Sepal Length')
+    plt.xlabel('Sepal Length (cm)')
+    plt.ylabel('Frequency')
+    # Plotting density curve
+    sns.kdeplot(df['sepal_length'], color='red')
+    plt.savefig('2_histogram_of_sepal_length')
+    plt.show()
+
+
+With use of matplotlib.pyplot I plotted the below histograms. Majority of the parameters are set to present the histogram in better looking way:
+- bins parameter specifies the number of bins or intervals to divide the data into. Here, it's set to 8 bins.
+- color='skyblue' and edgecolor='black' set the color of the bars and their edges
+- density=True normalizes the histogram so that the area under the histogram equals 1,
+- plt.title, plt.xlabel and plt.ylabel are setting titles of the histogram
+
+I also decided that I would like to see a line that shows how data is spread out across different values. I was reffering to information available on [seaborn.pydata.org](https://seaborn.pydata.org/generated/seaborn.kdeplot.html) that helped me to create a line to show that shape called a density curve with using seaborn.kdeplot(). 
+
+Afterthat I use the code to save the a *.png file with specific title but also show to the user for a reference. 
+
+
+<div style="text-align: center;">
+    <img src="https://github.com/mondbr/pands-project/blob/main/2_histogram_of_sepal_length.png" width=70% height=70%>
+</div>
+
+<div style="text-align: center;">
+    <img src="https://github.com/mondbr/pands-project/blob/main/3_histogram_of_sepal_width.png" width=70% height=70%>
+</div>
+
+<div style="text-align: center;">
+    <img src="https://github.com/mondbr/pands-project/blob/main/4_histogram_of_petal_length.png" width=70% height=70%>
+</div>
+
+<div style="text-align: center;">
+    <img src="https://github.com/mondbr/pands-project/blob/main/5_histogram_of_petal_width.png" width=70% height=70%>
 </div>
 
 
 
-
+Next function *def data_hist():*
 
 
 
